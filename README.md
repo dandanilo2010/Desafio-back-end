@@ -69,6 +69,20 @@ Spring Boot
 - Spring Security + JWT
 - H2 Database (em memória)
 
+#Segurança 
+
+- Autenticação via JWT.
+- Controle de acesso por roles: `ROLE_USER` e `ROLE_ADMIN`.
+
+**Usuários de teste:**
+
+| Usuário | Senha        | Role       |
+|---------|-------------|------------|
+| admin   | 123qwe!@#   | ROLE_ADMIN |
+| padrão  | 123qwe123   | ROLE_USER  |
+
+**Endpoint de login:**
+
 # Testando a API com Postman
 
 Para facilitar os testes, incluímos uma Collection do Postman com todos os endpoints da API.
