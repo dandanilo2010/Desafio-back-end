@@ -97,6 +97,8 @@ public class ClienteValidationService {
         if (clienteDTO.getEndereco().getCep() == null || clienteDTO.getEndereco().getCep().trim().isEmpty())
             throw new IllegalArgumentException("CEP é obrigatório");
 
+        // Não valida logradouro, bairro, cidade, UF, pois eles serão preenchidos pelo serviço externo
+
 
     }
 
