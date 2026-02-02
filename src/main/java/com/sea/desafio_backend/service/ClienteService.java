@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,37 +63,58 @@ public class ClienteService {
         return retorno;
     }
 
-    // ATUALIZAR
     public ClienteDTO atualizarCliente(Long id, ClienteDTO clienteDTO) {
 
+        // Validação do DTO
         validationService.validarClienteDTOParaAtualizacao(clienteDTO, id);
 
+        // Buscar o cliente existente
         ClienteEntity cliente = buscarEntityPorId(id);
         cliente.setNome(clienteDTO.getNome());
+        cliente.setCpf(clienteDTO.getCpf().replaceAll("\\D", ""));
 
-        String cpfSemMascara = clienteDTO.getCpf().replaceAll("\\D", "");
-        cliente.setCpf(cpfSemMascara);
-
+        // Atualizar endereço
         EnderecoEntity endereco = enderecoService.criarEndereco(clienteDTO.getEndereco());
         cliente.setEndereco(endereco);
 
+        // Atualizar emails
         cliente.getEmails().clear();
-        cliente.getEmails().addAll(
-                emailService.criarEmails(clienteDTO.getEmails(), cliente)
-        );
+        if (clienteDTO.getEmails() != null) {
+            List<EmailEntity> emailsAtualizados = new ArrayList<>();
+            for (EmailDTO emailDto : clienteDTO.getEmails()) {
+                EmailEntity email = new EmailEntity();
+                email.setEmail(emailDto.getEmail());
+                email.setCliente(cliente);
+                emailsAtualizados.add(email);
+            }
+            cliente.getEmails().addAll(emailsAtualizados);
+        }
 
+        // Atualizar telefones
         cliente.getTelefones().clear();
-        cliente.getTelefones().addAll(
-                telefoneService.criarTelefones(clienteDTO.getTelefones(), cliente)
-        );
+        if (clienteDTO.getTelefones() != null) {
+            List<TelefoneEntity> telefonesAtualizados = new ArrayList<>();
+            for (TelefoneDTO telDto : clienteDTO.getTelefones()) {
+                TelefoneEntity telefone = new TelefoneEntity();
+                telefone.setNumero(telDto.getNumero());
+                telefone.setTipo(telDto.getTipo());
+                telefone.setCliente(cliente);
+                telefonesAtualizados.add(telefone);
+            }
+            cliente.getTelefones().addAll(telefonesAtualizados);
+        }
 
+        // Salvar cliente atualizado
         ClienteEntity atualizado = clienteRepository.save(cliente);
 
+        // Converter para DTO e formatar
         ClienteDTO retorno = new ClienteDTO(atualizado);
         formatterService.formatarCliente(retorno);
 
         return retorno;
     }
+
+
 
     // LISTAR
     @Transactional(readOnly = true)

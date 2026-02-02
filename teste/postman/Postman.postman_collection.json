@@ -1,0 +1,188 @@
+{
+  "info": {
+    "_postman_id": "23b518be-75c7-4a5f-bd3c-f7ef91de3662",
+    "name": "Postman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43879214",
+    "_collection_link": "https://go.postman.co/collection/43879214-23b518be-75c7-4a5f-bd3c-f7ef91de3662?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "logando",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clientes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listando",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc3MDA0NjkyMywiZXhwIjoxNzcwMDUwNTIzLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dfQ.t5RcF8F14OaRDG3WZHEoCzmBoPdGR5pCNimM7fdL7Oc",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8080/clientes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criando",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc3MDA0NjkyMywiZXhwIjoxNzcwMDUwNTIzLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dfQ.t5RcF8F14OaRDG3WZHEoCzmBoPdGR5pCNimM7fdL7Oc",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome\": \"Danilo Araujo\",\r\n  \"cpf\": \"042.636.456-01\",\r\n  \"endereco\": {\r\n    \"cep\": \"72241-606\",\r\n    \"logradouro\": \"\",\r\n    \"numero\": \"\",\r\n    \"bairro\": \"\",\r\n    \"cidade\": \"\",\r\n    \"uf\": \"\"\r\n  },\r\n  \"emails\": [\r\n    {\r\n      \"email\": \"danilo2@email.com\"\r\n    }\r\n  ],\r\n  \"telefones\": [\r\n    {\r\n      \"numero\": \"(61)987556826\",\r\n      \"tipo\": \"CELULAR\"\r\n    }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clientes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizando",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc3MDA0NjkyMywiZXhwIjoxNzcwMDUwNTIzLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dfQ.t5RcF8F14OaRDG3WZHEoCzmBoPdGR5pCNimM7fdL7Oc",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome\": \"Danilo da Silva\",\r\n  \"cpf\": \"042.780.456-01\",\r\n  \"endereco\": {\r\n    \"cep\": \"72241-606\",\r\n    \"logradouro\": \"Rua Exemplo\",\r\n    \"numero\": \"123\",\r\n    \"bairro\": \"Centro\",\r\n    \"cidade\": \"Brasília\",\r\n    \"uf\": \"DF\"\r\n  },\r\n  \"emails\": [\r\n    {\r\n      \"email\": \"danilo3@email.com\"\r\n    }\r\n  ],\r\n  \"telefones\": [\r\n    {\r\n      \"numero\": \"61987656826\",\r\n      \"tipo\": \"CELULAR\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/clientes/18",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes",
+            "18"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deletando",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc3MDA0NjkyMywiZXhwIjoxNzcwMDUwNTIzLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dfQ.t5RcF8F14OaRDG3WZHEoCzmBoPdGR5pCNimM7fdL7Oc",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/clientes/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clientes",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
