@@ -6,16 +6,15 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
 @Getter
 @Setter
 public class LoginDTO {
 
-    @NotBlank(message = "Username is required")
-    @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters")
+    @NotBlank(message = "Usuário é obrigatório")
+    @Size(min = 3, max = 50, message = "Usuário deve ter entre 3 e 50 caracteres")
     private String username;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 3, message = "Password must be at least 3 characters")
+    @NotBlank(message = "Senha é obrigatória")
+    @Size(min = 3, message = "Senha deve ter no mínimo 3 caracteres")
     private String password;
 }

@@ -33,7 +33,7 @@ public class ClienteService {
     @Autowired
     private ClienteFormatterService formatterService;
 
-    // ================= CREATE =================
+    // CRIAR
     public ClienteDTO salvarCliente(ClienteDTO clienteDTO) {
 
         validationService.validarClienteDTO(clienteDTO);
@@ -56,14 +56,13 @@ public class ClienteService {
 
         ClienteEntity salvo = clienteRepository.save(cliente);
 
-      //  clienteDTO = new ClienteDTO(salvo);
+        ClienteDTO retorno = new ClienteDTO(salvo);
+        formatterService.formatarCliente(retorno);
 
-       // formatterService.formatarCliente(clienteDTO);
-
-        return  clienteDTO;
+        return retorno;
     }
 
-    // ================= UPDATE =================
+    // ATUALIZAR
     public ClienteDTO atualizarCliente(Long id, ClienteDTO clienteDTO) {
 
         validationService.validarClienteDTOParaAtualizacao(clienteDTO, id);
@@ -88,16 +87,18 @@ public class ClienteService {
         );
 
         ClienteEntity atualizado = clienteRepository.save(cliente);
-        //formatterService.formatarCliente(atualizado)
-        return clienteDTO;
+
+        ClienteDTO retorno = new ClienteDTO(atualizado);
+        formatterService.formatarCliente(retorno);
+
+        return retorno;
     }
 
-    // ================= READ =================
+    // LISTAR
     @Transactional(readOnly = true)
     public List<ClienteDTO> listarTodos() {
-        List<ClienteEntity> clientes = clienteRepository.findAll();
-        List<ClienteDTO> clienteDTOList = clientes.stream().map(ClienteDTO::new).collect(Collectors.toList());
-        return clienteDTOList.stream()
+        return clienteRepository.findAll().stream()
+                .map(ClienteDTO::new)
                 .map(formatterService::formatarCliente)
                 .collect(Collectors.toList());
     }
@@ -105,18 +106,18 @@ public class ClienteService {
     @Transactional(readOnly = true)
     public ClienteDTO buscarPorId(Long id) {
         ClienteEntity cliente = buscarEntityPorId(id);
-        ClienteDTO clienteDTO = new ClienteDTO(cliente);
-        formatterService.formatarCliente(clienteDTO);
-        return clienteDTO;
+        ClienteDTO dto = new ClienteDTO(cliente);
+        formatterService.formatarCliente(dto);
+        return dto;
     }
 
-    // ================= DELETE =================
+    // DELETAR
     public void deletarCliente(Long id) {
         ClienteEntity cliente = buscarEntityPorId(id);
         clienteRepository.delete(cliente);
     }
 
-    // ================= INTERNAL =================
+    // BUSCAR
     private ClienteEntity buscarEntityPorId(Long id) {
         return clienteRepository.findById(id)
                 .orElseThrow(() ->

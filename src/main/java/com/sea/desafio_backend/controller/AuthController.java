@@ -44,12 +44,7 @@ public class AuthController {
         this.userDetailsService = userDetailsService;
     }
 
-    /**
-     * Authenticates a user and returns JWT tokens.
-     *
-     * @param request Login credentials
-     * @return JWT access and refresh tokens
-     */
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO request) {
         try {
@@ -85,12 +80,7 @@ public class AuthController {
         }
     }
 
-    /**
-     * Refreshes an access token using a valid refresh token.
-     *
-     * @param request Request containing the refresh token
-     * @return New access token
-     */
+
     @PostMapping("/refresh")
     public ResponseEntity<?> refreshToken(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
@@ -132,9 +122,7 @@ public class AuthController {
         }
     }
 
-    /**
-     * Handles authentication exceptions.
-     */
+
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<?> handleAuthenticationException(AuthenticationException e) {
         logger.warn("Authentication exception: {}", e.getMessage());

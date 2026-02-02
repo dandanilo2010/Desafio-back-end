@@ -31,6 +31,7 @@ public class EnderecoDTO {
     @JsonProperty("localidade")
     private String cidade;
 
+
     private String uf;
 
     private String complemento;

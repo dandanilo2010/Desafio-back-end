@@ -1,6 +1,8 @@
 package com.sea.desafio_backend.service;
 
-import com.sea.desafio_backend.dto.EmailDTO;
+import
+
+        com.sea.desafio_backend.dto.EmailDTO;
 import com.sea.desafio_backend.entity.ClienteEntity;
 import com.sea.desafio_backend.entity.EmailEntity;
 import com.sea.desafio_backend.repository.EmailRepository;
